@@ -100,16 +100,21 @@ def roots(P):
       s=cdv(pev(c,z[i]),d); z[i]=(z[i][0]-s[0],z[i][1]-s[1])
       dm=max(dm,cab(s))
     if dm<1e-13*r: break
-  # agrupa raices repetidas
-  G=[]
+  for tl in (0.003,1e-4,0):
+    Rg,ok=grp(z,c,P,r,tl)
+    if ok: break
+  return R+Rg,ok
+def grp(z,c,P,r,tl):
+  # agrupa raices repetidas (tolerancia tl), pule y verifica
+  G=[]; R=[]
   for x in z:
     f=0
     for g in G:
-      if cab((x[0]-g[0]/g[2],x[1]-g[1]/g[2]))<0.003*(r+cab(x)):
+      if cab((x[0]-g[0]/g[2],x[1]-g[1]/g[2]))<tl*(r+cab(x)):
         g[0]+=x[0]; g[1]+=x[1]; g[2]+=1; f=1
         break
     if not f: G.append([x[0],x[1],1])
-  # pulido: Newton sobre la derivada (mult-1) y verificacion
+  # pulido: Newton sobre la derivada (mult-1)
   B=[P[0]]
   for g in G:
     x=(g[0]/g[2],g[1]/g[2]); d=c
@@ -126,7 +131,7 @@ def roots(P):
   if ok:
     e=0; s=0
     for i in range(len(P)): e=max(e,abs(B[i]-P[i])); s=max(s,abs(P[i]))
-    ok=e<1e-6*s
+    ok=e<1e-9*s
   return R,ok
 def res(p,m,PL,N,a0):
   # coef. de 1/(s-p)^k, k=1..m: serie de Taylor de N/Q en s=p
