@@ -11,6 +11,7 @@ def P(s):
 def F(x,d=4):
   if x!=x: return "nan"
   if abs(x)>1e12: return "inf"
+  if abs(x)>=1e5: return str(x)
   if d==4 and 0<abs(x)<0.01: d=7
   m=10**d
   n=int(abs(x)*m+0.5)
