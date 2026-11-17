@@ -1,5 +1,4 @@
-# TRANSZ.py - Transformada Z de G(s) racional, paso a paso
-# Casio fx-CG50 (MicroPython). Solo usa math. Complejos = pares (re,im)
+# TRANSZ.py - Transf. Z de G(s) paso a paso. fx-CG50. Complejos=(re,im)
 from math import *
 LN=[0]; Z0=(0.0,0.0)
 def out(s):
@@ -82,7 +81,7 @@ def st(p):
   while len(p)>1 and p[0]==0: p=p[1:]
   return p
 def roots(P):
-  # raices de P real: [[re,im,mult],..], im>=0 (im>0 = par conjugado)
+  # raices de P real (Durand-Kerner): [[re,im,mult],..], im>0 = par conj.
   P=P[:]; R=[]; m=0
   while len(P)>1 and P[-1]==0: P.pop(); m+=1
   if m: R.append([0.0,0.0,m])
@@ -90,7 +89,6 @@ def roots(P):
   if n<1: return R,1
   c=[(x/P[0],0.0) for x in P]; r=abs(c[n][0])**(1.0/n)
   z=[(r*cos(2*pi*k/n+0.4),r*sin(2*pi*k/n+0.4)) for k in range(n)]
-  # Durand-Kerner
   for it in range(120):
     dm=0
     for i in range(n):
@@ -105,7 +103,7 @@ def roots(P):
     if ok: break
   return R+Rg,ok
 def grp(z,c,P,r,tl):
-  # agrupa raices repetidas (tolerancia tl), pule y verifica
+  # agrupa repetidas (tol. tl), pule (Newton en derivada) y verifica
   G=[]; R=[]
   for x in z:
     f=0
@@ -114,7 +112,6 @@ def grp(z,c,P,r,tl):
         g[0]+=x[0]; g[1]+=x[1]; g[2]+=1; f=1
         break
     if not f: G.append([x[0],x[1],1])
-  # pulido: Newton sobre la derivada (mult-1)
   B=[P[0]]
   for g in G:
     x=(g[0]/g[2],g[1]/g[2]); d=c
