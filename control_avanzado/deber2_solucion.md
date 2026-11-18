@@ -360,6 +360,8 @@ $$G(z)=\frac{K(z+1)}{(z-1)(z-0.6065)},\qquad 1+G(z)=0\Rightarrow z^2+(K-1.6065)z
 
 **Descripción del trazado.** Las dos ramas nacen ($K=0$) en los polos $z=1$ y $z=0.6065$, se mueven una hacia la otra sobre el eje real y se encuentran en $z=0.7925$ ($K=0.0215$). Ahí salen del eje real a $\pm90°$ y recorren la circunferencia de centro $-1$ y radio $1.7925$, hacia la izquierda; cruzan el círculo unitario en $z=0.6065\pm j0.7951$ con $K=0.3935$ (a partir de ahí el sistema es inestable); siguen por la circunferencia, fuera del círculo unitario, hasta reencontrarse en el eje real en $z=-2.7925$ ($K=7.1915$). Luego una rama va hacia la derecha por el eje real hasta el cero $z=-1$ (llega cuando $K\to\infty$) y la otra va hacia $-\infty$. Puntos de apoyo calculados: $K=0.3\Rightarrow0.6533\pm j0.6927$; $K=0.5\Rightarrow0.5533\pm j0.8947$; $K=5\Rightarrow-1.6968\pm j1.6515$; $K=7\Rightarrow-2.6968\pm j0.5780$.
 
+![Lugar geométrico de las raíces del ejercicio 6, con el círculo unitario, la curva de ζ = 0.5 y los puntos clave](ej6_lugar_raices.png)
+
 ### Ganancia para $\zeta=0.5$
 
 En el plano $z$ la curva de $\zeta$ constante es una espiral logarítmica. Con $\theta=\angle z=T\omega_d$:
